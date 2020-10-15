@@ -61,7 +61,7 @@ $(MALI_KO):
 	@echo "make mali module MALI_OUT is $(MALI_OUT)"
 	@echo "make mali module MAKE is $(MAKE)"
 	@echo "GPU_DRV_VERSION is ${GPU_DRV_VERSION}"
-	$(MAKE) -C $(shell pwd)/$(PRODUCT_OUT)/obj/KERNEL_OBJ M=$(shell pwd)/$(MALI_OUT)/ \
+	PATH=/bin:$$PATH $(MAKE) -C $(shell pwd)/$(PRODUCT_OUT)/obj/KERNEL_OBJ M=$(shell pwd)/$(MALI_OUT)/ \
 	ARCH=$(KERNEL_ARCH) CROSS_COMPILE=$(PREFIX_CROSS_COMPILE) CONFIG_MALI400=m  CONFIG_MALI450=m    \
 	EXTRA_CFLAGS="-DCONFIG_MALI400=m -DCONFIG_MALI450=m" \
 	CONFIG_AM_VDEC_H264_4K2K=y modules
@@ -88,7 +88,7 @@ $(MALI_KO):
 	@echo "make mali module KERNEL_ARCH is $(KERNEL_ARCH) current dir is $(shell pwd)"
 	@echo "MALI is $(MALI), MALI_OUT is $(MALI_OUT)"
 	@echo "GPU_DRV_VERSION is ${GPU_DRV_VERSION}"
-	$(MAKE) -C $(shell pwd)/$(PRODUCT_OUT)/obj/KERNEL_OBJ M=$(shell pwd)/$(MALI_OUT)/kernel/drivers/gpu/arm/midgard \
+	PATH=/bin:$$PATH $(MAKE) -C $(shell pwd)/$(PRODUCT_OUT)/obj/KERNEL_OBJ M=$(shell pwd)/$(MALI_OUT)/kernel/drivers/gpu/arm/midgard \
 	ARCH=$(KERNEL_ARCH) CROSS_COMPILE=$(PREFIX_CROSS_COMPILE) \
 	EXTRA_CFLAGS="-DCONFIG_MALI_PLATFORM_DEVICETREE -DCONFIG_MALI_MIDGARD_DVFS -DCONFIG_MALI_BACKEND=gpu" \
 	CONFIG_MALI_MIDGARD=m CONFIG_MALI_PLATFORM_DEVICETREE=y CONFIG_MALI_MIDGARD_DVFS=y CONFIG_MALI_BACKEND=gpu modules

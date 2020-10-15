@@ -25,11 +25,11 @@
 ARCH ?= $(shell uname -m)
 
 ifeq ($(KDIR),)
-$(error Must specify KDIR to point to the kernel to target))
+$(error Must specify KDIR to point to the kernel to target)
 endif
 
 all:
-	$(MAKE) ARCH=$(ARCH) -C $(KDIR) M=$(CURDIR) EXTRA_CFLAGS="-I$(CURDIR)/../../../include" modules CONFIG_MALI_MEMORY_GROUP_MANAGER=m
+	PATH=/bin:$$PATH $(MAKE) ARCH=$(ARCH) -C $(KDIR) M=$(CURDIR) EXTRA_CFLAGS="-I$(CURDIR)/../../../include" modules CONFIG_MALI_MEMORY_GROUP_MANAGER=m
 
 clean:
-	$(MAKE) ARCH=$(ARCH) -C $(KDIR) M=$(CURDIR) clean
+	PATH=/bin:$$PATH $(MAKE) ARCH=$(ARCH) -C $(KDIR) M=$(CURDIR) clean

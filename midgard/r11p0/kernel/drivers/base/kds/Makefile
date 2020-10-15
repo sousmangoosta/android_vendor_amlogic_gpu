@@ -21,17 +21,17 @@ ARCH ?= $(shell uname -m)
 CONFIG_KDS_TEST ?= n
 
 ifeq ($(KDIR),)
-$(error Must specify KDIR to point to the kernel to target))
+$(error Must specify KDIR to point to the kernel to target)
 endif
 
 all: kds
 
 kds:
-	$(MAKE) ARCH=$(ARCH) -C $(KDIR) M=$(CURDIR) EXTRA_CFLAGS="-I$(CURDIR)/../../../include" CONFIG_KDS=m
+	PATH=/bin:$$PATH $(MAKE) ARCH=$(ARCH) -C $(KDIR) M=$(CURDIR) EXTRA_CFLAGS="-I$(CURDIR)/../../../include" CONFIG_KDS=m
 
 kds_test:
-	$(MAKE) ARCH=$(ARCH) -C $(KDIR) M=$(CURDIR) EXTRA_CFLAGS="-I$(CURDIR)/../../../include" CONFIG_KDS_TEST=m
+	PATH=/bin:$$PATH $(MAKE) ARCH=$(ARCH) -C $(KDIR) M=$(CURDIR) EXTRA_CFLAGS="-I$(CURDIR)/../../../include" CONFIG_KDS_TEST=m
 
 clean:
-	$(MAKE) ARCH=$(ARCH) -C $(KDIR) M=$(CURDIR) clean
+	PATH=/bin:$$PATH $(MAKE) ARCH=$(ARCH) -C $(KDIR) M=$(CURDIR) clean
 

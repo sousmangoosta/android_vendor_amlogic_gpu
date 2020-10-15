@@ -25,7 +25,7 @@
 ARCH ?= $(shell uname -m)
 
 ifeq ($(KDIR),)
-$(error Must specify KDIR to point to the kernel to target))
+$(error Must specify KDIR to point to the kernel to target)
 endif
 
 TEST_CCFLAGS := \
@@ -42,7 +42,7 @@ TEST_CCFLAGS := \
 	-I$(srctree)/include/linux
 
 all:
-	$(MAKE) ARCH=$(ARCH) -C $(KDIR) M=$(CURDIR) $(SCONS_CONFIGS) EXTRA_CFLAGS="$(TEST_CCFLAGS)" KBUILD_EXTRA_SYMBOLS="$(CURDIR)/../kutf/Module.symvers $(CURDIR)/../../Module.symvers" modules
+	PATH=/bin:$$PATH $(MAKE) ARCH=$(ARCH) -C $(KDIR) M=$(CURDIR) $(SCONS_CONFIGS) EXTRA_CFLAGS="$(TEST_CCFLAGS)" KBUILD_EXTRA_SYMBOLS="$(CURDIR)/../kutf/Module.symvers $(CURDIR)/../../Module.symvers" modules
 
 clean:
-	$(MAKE) ARCH=$(ARCH) -C $(KDIR) M=$(CURDIR) clean
+	PATH=/bin:$$PATH $(MAKE) ARCH=$(ARCH) -C $(KDIR) M=$(CURDIR) clean

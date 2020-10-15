@@ -66,12 +66,12 @@ $(error No KDIR found for platform $(CPU))
 endif
 
 all:
-	$(MAKE) ARCH=$(ARCH) -C $(KDIR) M=$(CURDIR) modules
+	PATH=/bin:$$PATH $(MAKE) ARCH=$(ARCH) -C $(KDIR) M=$(CURDIR) modules
 
 kernelrelease:
-	$(MAKE) -C $(KDIR) kernelrelease
+	PATH=/bin:$$PATH $(MAKE) -C $(KDIR) kernelrelease
 
 clean:
-	$(MAKE) ARCH=$(ARCH) -C $(KDIR) M=$(CURDIR) clean
+	PATH=/bin:$$PATH $(MAKE) ARCH=$(ARCH) -C $(KDIR) M=$(CURDIR) clean
 
 endif

@@ -40,14 +40,14 @@ else
 #
 
 ifeq ($(KDIR),)
-$(error Must specify KDIR to point to the kernel to target))
+$(error Must specify KDIR to point to the kernel to target)
 endif
 
 all:
-	$(MAKE) ARCH=$(ARCH) -C $(KDIR) M=$(CURDIR)
+	PATH=/bin:$$PATH $(MAKE) ARCH=$(ARCH) -C $(KDIR) M=$(CURDIR)
 
 clean:
-	$(MAKE) ARCH=$(ARCH) -C $(KDIR) M=$(CURDIR) clean
+	PATH=/bin:$$PATH $(MAKE) ARCH=$(ARCH) -C $(KDIR) M=$(CURDIR) clean
 
 endif
 

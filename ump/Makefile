@@ -63,13 +63,13 @@ $(error No KDIR found for platform $(CPU))
 endif
 
 all:
-	$(MAKE) -C $(KDIR) M=$(CURDIR) modules
+	PATH=/bin:$$PATH $(MAKE) -C $(KDIR) M=$(CURDIR) modules
 
 kernelrelease:
-	$(MAKE) -C $(KDIR) kernelrelease
+	PATH=/bin:$$PATH $(MAKE) -C $(KDIR) kernelrelease
 
 clean:
-	$(MAKE) -C $(KDIR) M=$(CURDIR) clean
-	$(MAKE) -C $(KDIR) M=$(CURDIR)/../mali clean
+	PATH=/bin:$$PATH $(MAKE) -C $(KDIR) M=$(CURDIR) clean
+	PATH=/bin:$$PATH $(MAKE) -C $(KDIR) M=$(CURDIR)/../mali clean
 
 endif

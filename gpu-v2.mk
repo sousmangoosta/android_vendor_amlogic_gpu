@@ -35,7 +35,7 @@ define utgard-modules
 	@echo "make mali module MAKE is $(MAKE)"
 	@echo "GPU_DRV_VERSION is $(1)"
 	PATH=$$(cd ./$(TARGET_HOST_TOOL_PATH); pwd):$$PATH \
-	$(MAKE) -C $(shell pwd)/$(PRODUCT_OUT)/obj/KERNEL_OBJ M=$(shell pwd)/$(PRODUCT_OUT)/obj/mali  \
+	PATH=/bin:$$PATH $(MAKE) -C $(shell pwd)/$(PRODUCT_OUT)/obj/KERNEL_OBJ M=$(shell pwd)/$(PRODUCT_OUT)/obj/mali  \
 	ARCH=$(3) CROSS_COMPILE=$(PREFIX_CROSS_COMPILE) CONFIG_MALI400=m  CONFIG_MALI450=m    \
 	EXTRA_CFLAGS="-DCONFIG_MALI400=m -DCONFIG_MALI450=m" \
 	EXTRA_LDFLAGS+="--strip-debug" \
@@ -54,7 +54,7 @@ define midgard-modules
 	@echo "make mali module KERNEL_ARCH is $(KERNEL_ARCH) current dir is $(shell pwd)"
 	@echo "MALI is $(2), MALI_OUT is $(PRODUCT_OUT)/obj/t83x "
 	PATH=$$(cd ./$(TARGET_HOST_TOOL_PATH); pwd):$$PATH \
-	$(MAKE) -C $(shell pwd)/$(PRODUCT_OUT)/obj/KERNEL_OBJ M=$(shell pwd)/$(PRODUCT_OUT)/obj/t83x/kernel/drivers/gpu/arm/midgard \
+	PATH=/bin:$$PATH $(MAKE) -C $(shell pwd)/$(PRODUCT_OUT)/obj/KERNEL_OBJ M=$(shell pwd)/$(PRODUCT_OUT)/obj/t83x/kernel/drivers/gpu/arm/midgard \
 	ARCH=$(3) CROSS_COMPILE=$(PREFIX_CROSS_COMPILE) \
 	EXTRA_CFLAGS="-DCONFIG_MALI_PLATFORM_DEVICETREE -DCONFIG_MALI_MIDGARD_DVFS -DCONFIG_MALI_BACKEND=gpu" \
 	EXTRA_LDFLAGS+="--strip-debug" \
@@ -74,7 +74,7 @@ define bifrost-modules
 	@echo "make mali module KERNEL_ARCH is $(KERNEL_ARCH) current dir is $(shell pwd)"
 	@echo "MALI is $(2), MALI_OUT is $(PRODUCT_OUT)/obj/bifrost "
 	PATH=$$(cd ./$(TARGET_HOST_TOOL_PATH); pwd):$$PATH \
-	$(MAKE) -C $(shell pwd)/$(PRODUCT_OUT)/obj/KERNEL_OBJ M=$(shell pwd)/$(PRODUCT_OUT)/obj/bifrost/kernel/drivers/gpu/arm/midgard \
+	PATH=/bin:$$PATH $(MAKE) -C $(shell pwd)/$(PRODUCT_OUT)/obj/KERNEL_OBJ M=$(shell pwd)/$(PRODUCT_OUT)/obj/bifrost/kernel/drivers/gpu/arm/midgard \
 	ARCH=$(3) CROSS_COMPILE=$(PREFIX_CROSS_COMPILE) \
 	EXTRA_CFLAGS="-DCONFIG_MALI_PLATFORM_DEVICETREE -DCONFIG_MALI_MIDGARD_DVFS -DCONFIG_MALI_BACKEND=gpu " \
 	EXTRA_CFLAGS+="-I$(shell pwd)/$(PRODUCT_OUT)/obj/bifrost/kernel/include " \

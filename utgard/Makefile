@@ -25,7 +25,7 @@ gpu:
 	if [ ! -d platform ]; then \
 		ln -s $(UTGARD_DIR)platform platform; \
 	fi ;\
-	$(MAKE) -C $(KDIR) M=`pwd` CONFIG_MALI400=$(MALI400) modules
+	PATH=/bin:$$PATH $(MAKE) -C $(KDIR) M=`pwd` CONFIG_MALI400=$(MALI400) modules
 
 clean:
 	echo "clean this module"

@@ -19,14 +19,14 @@
 ARCH ?= $(shell uname -m)
 
 ifeq ($(KDIR),)
-$(error Must specify KDIR to point to the kernel to target))
+$(error Must specify KDIR to point to the kernel to target)
 endif
 
 all: pl111_drm
 
 pl111_drm:
-	$(MAKE) ARCH=$(ARCH) -C $(KDIR) M=$(CURDIR) EXTRA_CFLAGS="-I$(CURDIR)/../../../include" CONFIG_DMA_SHARED_BUFFER_USES_KDS=y CONFIG_DRM_PL111=m
+	PATH=/bin:$$PATH $(MAKE) ARCH=$(ARCH) -C $(KDIR) M=$(CURDIR) EXTRA_CFLAGS="-I$(CURDIR)/../../../include" CONFIG_DMA_SHARED_BUFFER_USES_KDS=y CONFIG_DRM_PL111=m
 
 clean:
-	$(MAKE) ARCH=$(ARCH) -C $(KDIR) M=$(CURDIR) clean
+	PATH=/bin:$$PATH $(MAKE) ARCH=$(ARCH) -C $(KDIR) M=$(CURDIR) clean
 
